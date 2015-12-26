@@ -1,0 +1,37 @@
+<?php
+
+global $_MODULE;
+$_MODULE = array();
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_5d5a81dac9fe85dbd0192c81bcb8562d'] = 'Популярные товары на главной (zapalm версия)';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_74c2c3db94cd8369162c0a512b711efb'] = 'Отображает блок популярных товаров на начальной странице сайта.';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_c888438d14855d7d96a2724ee9c306bd'] = 'Настройки обновлены';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_1e103a622ed29a413eadbb2839927386'] = 'Некоторые настройки не обновлись';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_f4f70727dc34561dfde1a3c529b6205c'] = 'Настройки';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_20c47700083df21a87e47d9299ef4dc4'] = 'Количество отображаемых товаров';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_5bc8290012fcc597689ef8959c2fc969'] = 'Число товаров, отображаемых на странице (по умолчанию: 10).';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_aa423b11ecd16dfe7143884e9df2cdc8'] = 'Категория отображаемых товаров';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_1d4f394f10dc5c07e01224bc4b424e46'] = 'Выбирете категорию товаров, которые будут показываться (по умолчанию: Главная)';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_ca9ee8d80f4ac55dcad9bea817f43db1'] = 'Перемешивать товары';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_0b9a2ec65327b3aae71bf2e50ac0bab5'] = 'Отметьте, если вы хотите показывать товары в случайном порядке.';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_a5c6d7135d3e997da52bdff1370b5fdc'] = 'Показать название продукта';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_6a6911123f167f7d1a10abc8a070e97a'] = 'Отметьте, если вы хотите, чтобы показывалось название товара.';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_1b25f0d3156db92133ba0d68918246cd'] = 'Показывать описание товара';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_297351414eb092defede84c658e3c044'] = 'Отметьте, если вы хотите, чтобы показывалось описание товара.';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_c5423ac97a35a3dc6320a6e4ab07d176'] = 'Показывать кнопку \"Просмотр\"';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_b01800e6e5ebfd467eece2502fbf7e05'] = 'Отметьте, если вы хотите, чтобы отображалась кнопка \"Просмотр\".';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_b6c2ed0c0c968c97750dee7b093e0145'] = 'Показывать кнопку \"Добавить в корзину\"';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_d5ac5b8e0cc7cbaf6f5089ac08866d96'] = 'Отметьте, если вы хотите, чтобы отображалась кнопка \"Добавить в корзину\". Если Prestashop в режиме каталога, то эта кнопка не будет отображаться.';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_7a7deb3e90a0693ebfadce49b4990c73'] = 'Показывать цену товара';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_567a060899bbe21a9a5978fc76efaa75'] = 'Отметьте, если вы хотите, чтобы отображалась цена товара. Если Prestashop в режиме каталога, то цена не будет отображаться.';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_10c48695e2bbbaf818d20d0cc9e1b6a1'] = 'Количество отображаемых колонок';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_b6965879ab5f1a4cb9d7b03fbf04fa08'] = 'Введите количество отображаемых колонок (по умолчанию: 4).';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_1bb985fe0ecf6a5871cc340fa64ad8f7'] = 'Настройка высоты блока \"Популярные товары на главной\"';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_bf78663b78dd314542048075c3733e4c'] = 'Необходимо задать высоту блока \"Популярные товары на главной\", если вы изменили количество отображаемых колонок.';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_13952fd8f1f2f8f6deb5534659fa4920'] = 'Настройка ширины блока \"Популярные товары на главной\"';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_f39f4cd16121f6491f1d735cae245cc6'] = 'Необходимо задать ширину блока \"Популярные товары на главной\", если вы изменили количество отображаемых колонок.';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_c9cc8cce247e49bae79f15173ce97354'] = 'Сохранить';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_e0e572ae0d8489f8bf969e93d469e89c'] = 'Товаров нет';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_ca7d973c26c57b69e0857e7a0332d545'] = 'Популярные товары';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_d3da97e2d9aee5c8fbe03156ad051c99'] = 'Подробнее';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_4351cfebe4b61d8aa5efa1d020710005'] = 'Просмотр';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_2d0f6b8300be19cf35e89e66f0677f95'] = 'В корзину';
