@@ -1,10 +1,10 @@
-Featured Products on the homepage (zapalm version): module for PrestaShop 1.3-1.4
+Featured products on the homepage (zapalm version): module for PrestaShop 1.3-1.4
 ======
 
 Description
 ------------
 This is a module for [PrestaShop][4] e-commerce solution (v1.3-1.4) that displays featured products in the middle of the homepage.
-More info: http://prestashop.modulez.ru/en/frontend-features/21-specials-block-zapalm-version.html
+More info: http://prestashop.modulez.ru/en/frontend-features/16-enhanced-featured-products-on-homepage-module-for-prestashop.html
 
 Installation & Update
 ------------
