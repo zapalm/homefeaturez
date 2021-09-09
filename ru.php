@@ -35,3 +35,8 @@ $_MODULE['<{homefeaturez}prestashop>homefeaturez_ca7d973c26c57b69e0857e7a0332d54
 $_MODULE['<{homefeaturez}prestashop>homefeaturez_d3da97e2d9aee5c8fbe03156ad051c99'] = 'Подробнее';
 $_MODULE['<{homefeaturez}prestashop>homefeaturez_4351cfebe4b61d8aa5efa1d020710005'] = 'Просмотр';
 $_MODULE['<{homefeaturez}prestashop>homefeaturez_2d0f6b8300be19cf35e89e66f0677f95'] = 'В корзину';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_77abd48d0a4b2599252746283cf415bd'] = 'Информация о модуле';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_34b6cd75171affba6957e308dcbd92be'] = 'Версия';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_794df3791a8c800841516007427a2aa3'] = 'Лицензия';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_15bbb9d0bbf25e8d2978de1168c749dc'] = 'Сайт';
+$_MODULE['<{homefeaturez}prestashop>homefeaturez_a517747c3d12f99244ae598910d979c5'] = 'Автор';
