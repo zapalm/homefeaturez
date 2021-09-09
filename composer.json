@@ -1,0 +1,17 @@
+{
+  "name": "zapalm/homefeaturez",
+  "type": "prestashop-module",
+  "homepage": "https://prestashop.modulez.ru/en/frontend-features/16-enhanced-featured-products-on-homepage-module-for-prestashop.html",
+  "authors": [
+    {
+      "name": "Maksim T.",
+      "email": "zapalm@yandex.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4"
+  },
+  "config": {
+    "preferred-install": "dist"
+  }
+}
