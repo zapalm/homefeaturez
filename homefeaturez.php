@@ -47,8 +47,7 @@ class HomeFeaturez extends Module
 		$this->tab = version_compare(_PS_VERSION_, '1.4', '>=') ? 'front_office_features' : 'Tools';
 		$this->version = '2.3.2';
 		$this->author = 'zapalm';
-		$this->need_instance = 0;
-		$this->bootstrap = false;
+		$this->need_instance = false;
 
 		parent::__construct();
 		$this->displayName = $this->l('Featured Products on the homepage (zapalm version)');
