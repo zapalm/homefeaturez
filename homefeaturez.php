@@ -8,8 +8,9 @@
  * @license   https://opensource.org/licenses/afl-3.0.php Academic Free License (AFL 3.0)
  */
 
-if (!defined('_PS_VERSION_'))
-	exit;
+if (false === defined('_PS_VERSION_')) {
+    exit;
+}
 
 /**
  * Module HomeFeaturez.
@@ -22,37 +23,38 @@ class HomeFeaturez extends Module
     const HOMEPAGE_PRODUCT_ID = 16;
 
     /** @var array Default settings. */
-	private $conf = array(
-		'HOME_FEATURED_NBR' => 10,
-		'HOME_FEATURED_CATALOG' => 1,
-		'HOME_FEATURED_RANDOM' => 1,
-		'HOME_FEATURED_TITLE' => 1,
-		'HOME_FEATURED_DESCR' => 1,
-		'HOME_FEATURED_VIEW' => 1,
-		'HOME_FEATURED_CART' => 1,
-		'HOME_FEATURED_PRICE' => 1,
-		'HOME_FEATURED_COLS' => 4,
-		'HOME_FEATURED_HEIGHT_ADJUST' => 670, // высота для блока из 4 колонок в 2 ряда для стандартной темы Prestashop
-		'HOME_FEATURED_WIDTH_ADJUST' => 535, // ширина для блока из 4 колонок для стандартной темы Prestashop
-	);
+    private $conf = array(
+        'HOME_FEATURED_NBR'           => 10,
+        'HOME_FEATURED_CATALOG'       => 1,
+        'HOME_FEATURED_RANDOM'        => 1,
+        'HOME_FEATURED_TITLE'         => 1,
+        'HOME_FEATURED_DESCR'         => 1,
+        'HOME_FEATURED_VIEW'          => 1,
+        'HOME_FEATURED_CART'          => 1,
+        'HOME_FEATURED_PRICE'         => 1,
+        'HOME_FEATURED_COLS'          => 4,
+        'HOME_FEATURED_HEIGHT_ADJUST' => 670, // Height for a block of 4 columns in 2 rows
+        'HOME_FEATURED_WIDTH_ADJUST'  => 535, // Width for a block of 4 columns
+    );
 
     /**
      * @inheritdoc
      *
      * @author Maksim T. <zapalm@yandex.com>
      */
-	public function __construct()
-	{
-		$this->name = 'homefeaturez';
-		$this->tab = version_compare(_PS_VERSION_, '1.4', '>=') ? 'front_office_features' : 'Tools';
-		$this->version = '2.3.2';
-		$this->author = 'zapalm';
-		$this->need_instance = false;
+    public function __construct()
+    {
+        $this->name          = 'homefeaturez';
+        $this->tab           = version_compare(_PS_VERSION_, '1.4', '>=') ? 'front_office_features' : 'Tools';
+        $this->version       = '2.3.2';
+        $this->author        = 'zapalm';
+        $this->need_instance = false;
 
-		parent::__construct();
-		$this->displayName = $this->l('Featured Products on the homepage (zapalm version)');
-		$this->description = $this->l('Displays featured products in the middle of the homepage.');
-	}
+        parent::__construct();
+
+        $this->displayName = $this->l('Featured Products on the homepage (zapalm version)');
+        $this->description = $this->l('Displays featured products in the middle of the homepage.');
+    }
 
     /**
      * @inheritdoc
@@ -106,6 +108,7 @@ class HomeFeaturez extends Module
 		global $cookie;
 
 		$output = '<h2>'.$this->displayName.'</h2>';
+
 		if (Tools::isSubmit('submit_save'))
 		{
 			$res = 1;
@@ -240,16 +243,16 @@ class HomeFeaturez extends Module
 		else
 			$products = $category->getProducts(intval($params['cookie']->id_lang), 1, ($nb ? $nb : 10), 'date_add', 'DESC');
 
-		// width in pixels of the home featured block
+		// A width in pixels of the home featured block
 		$block_width = (int)$conf['HOME_FEATURED_WIDTH_ADJUST'];
 
-		// number of products per line
+		// A number of products per line
 		$nb_items_per_line = (int)$conf['HOME_FEATURED_COLS'];
 
-		// width in pixels of a product list item
+		// A width in pixels of a product list item
 		$block_li_width = ceil($block_width / $nb_items_per_line) - 1;
 
-		// size of a product image
+		// A size of a product image
 		$pic_size_type = 'home';
 
 		$smarty->assign(array(
