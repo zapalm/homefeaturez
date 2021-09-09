@@ -1,21 +1,27 @@
 <?php
 /**
- * Featured products on the homepage: module for PrestaShop 1.3-1.4
+ * Enhanced featured products on homepage: the module for PrestaShop.
  *
- * @author zapalm <zapalm@ya.ru>
- * @copyright (c) 2010-2015, zapalm
- * @link http://prestashop.modulez.ru/en/frontend-features/16-enhanced-featured-products-on-homepage-module-for-prestashop.html The module's homepage
- * @license http://opensource.org/licenses/afl-3.0.php Academic Free License (AFL 3.0)
+ * @author    Maksim T. <zapalm@yandex.com>
+ * @copyright 2010 Maksim T.
+ * @link      https://prestashop.modulez.ru/en/frontend-features/16-enhanced-featured-products-on-homepage-module-for-prestashop.html The module's homepage
+ * @license   https://opensource.org/licenses/afl-3.0.php Academic Free License (AFL 3.0)
  */
 
 if (!defined('_PS_VERSION_'))
 	exit;
 
+/**
+ * Module HomeFeaturez.
+ *
+ * @author Maksim T. <zapalm@yandex.com>
+ */
 class HomeFeaturez extends Module
 {
     /** The product ID of the module on its homepage. */
     const HOMEPAGE_PRODUCT_ID = 16;
 
+    /** @var array Default settings. */
 	private $conf = array(
 		'HOME_FEATURED_NBR' => 10,
 		'HOME_FEATURED_CATALOG' => 1,
@@ -30,6 +36,11 @@ class HomeFeaturez extends Module
 		'HOME_FEATURED_WIDTH_ADJUST' => 535, // ширина для блока из 4 колонок для стандартной темы Prestashop
 	);
 
+    /**
+     * @inheritdoc
+     *
+     * @author Maksim T. <zapalm@yandex.com>
+     */
 	public function __construct()
 	{
 		$this->name = 'homefeaturez';
@@ -86,6 +97,11 @@ class HomeFeaturez extends Module
         return $result;
     }
 
+    /**
+     * @inheritdoc
+     *
+     * @author Maksim T. <zapalm@yandex.com>
+     */
 	public function getContent()
 	{
 		global $cookie;
@@ -205,6 +221,11 @@ class HomeFeaturez extends Module
 		return $output;
 	}
 
+    /**
+     * @inheritdoc
+     *
+     * @author Maksim T. <zapalm@yandex.com>
+     */
 	public function hookHome($params)
 	{
 		global $smarty;

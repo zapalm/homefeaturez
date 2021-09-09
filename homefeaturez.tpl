@@ -1,3 +1,12 @@
+{**
+ * Enhanced featured products on homepage: the module for PrestaShop.
+ *
+ * @author    Maksim T. <zapalm@yandex.com>
+ * @copyright 2010 Maksim T.
+ * @link      https://prestashop.modulez.ru/en/frontend-features/16-enhanced-featured-products-on-homepage-module-for-prestashop.html The module's homepage
+ * @license   https://opensource.org/licenses/afl-3.0.php Academic Free License (AFL 3.0)
+ *}
+
 <!-- MODULE Home Featurez Products -->
 {if empty($products)}
 	<p>{l s='No featured products' mod='homefeaturez'}</p>
