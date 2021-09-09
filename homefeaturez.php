@@ -13,6 +13,9 @@ if (!defined('_PS_VERSION_'))
 
 class HomeFeaturez extends Module
 {
+    /** The product ID of the module on its homepage. */
+    const HOMEPAGE_PRODUCT_ID = 16;
+
 	private $conf = array(
 		'HOME_FEATURED_NBR' => 10,
 		'HOME_FEATURED_CATALOG' => 1,
@@ -41,21 +44,47 @@ class HomeFeaturez extends Module
 		$this->description = $this->l('Displays featured products in the middle of the homepage.');
 	}
 
-	public function install()
-	{
-		foreach ($this->conf as $c => $v)
-			Configuration::updateValue($c, $v);
+    /**
+     * @inheritdoc
+     *
+     * @author Maksim T. <zapalm@yandex.com>
+     */
+    public function install()
+    {
+        $result = parent::install();
 
-		return parent::install() && $this->registerHook('home');
-	}
+        if ($result) {
+            foreach ($this->conf as $c => $v) {
+                Configuration::updateValue($c, $v);
+            }
 
-	public function uninstall()
-	{
-		foreach ($this->conf as $c => $v)
-			Configuration::deleteByName($c);
+            $result = $this->registerHook('home');
+        }
 
-		return parent::uninstall();
-	}
+        $this->registerModuleOnQualityService('installation');
+
+        return (bool)$result;
+    }
+
+    /**
+     * @inheritdoc
+     *
+     * @author Maksim T. <zapalm@yandex.com>
+     */
+    public function uninstall()
+    {
+        $result = (bool)parent::uninstall();
+
+        if ($result) {
+            foreach ($this->conf as $c => $v) {
+                Configuration::deleteByName($c);
+            }
+        }
+
+        $this->registerModuleOnQualityService('uninstallation');
+
+        return $result;
+    }
 
 	public function getContent()
 	{
@@ -185,4 +214,34 @@ class HomeFeaturez extends Module
 
 		return $this->display(__FILE__, 'homefeaturez.tpl');
 	}
+
+    /**
+     * Registers current module installation/uninstallation in the quality service.
+     *
+     * This method is needed for a developer to quickly find out about a problem with installing or uninstalling a module.
+     *
+     * @param string $operation The operation. Possible values: installation, uninstallation.
+     *
+     * @author Maksim T. <zapalm@yandex.com>
+     */
+    private function registerModuleOnQualityService($operation)
+    {
+        @file_get_contents('https://prestashop.modulez.ru/scripts/quality-service/index.php?' . http_build_query([
+            'data' => json_encode([
+                'productId'           => self::HOMEPAGE_PRODUCT_ID,
+                'productSymbolicName' => $this->name,
+                'productVersion'      => $this->version,
+                'operation'           => $operation,
+                'status'              => (empty($this->_errors) ? 'success' : 'error'),
+                'message'             => (false === empty($this->_errors) ? strip_tags(stripslashes(implode(' ', (array)$this->_errors))) : ''),
+                'prestashopVersion'   => _PS_VERSION_,
+                'thirtybeesVersion'   => (defined('_TB_VERSION_') ? _TB_VERSION_ : ''),
+                'shopDomain'          => (method_exists('Tools', 'getShopDomain') && Tools::getShopDomain() ? Tools::getShopDomain() : (Configuration::get('PS_SHOP_DOMAIN') ? Configuration::get('PS_SHOP_DOMAIN') : Tools::getHttpHost())),
+                'shopEmail'           => Configuration::get('PS_SHOP_EMAIL'), // This public e-mail from a shop's contacts can be used by a developer to send only an urgent information about security issue of a module!
+                'phpVersion'          => PHP_VERSION,
+                'ioncubeVersion'      => (function_exists('ioncube_loader_iversion') ? ioncube_loader_iversion() : ''),
+                'languageIsoCode'     => Language::getIsoById(false === empty($GLOBALS['cookie']->id_lang) ? $GLOBALS['cookie']->id_lang : Context::getContext()->language->id),
+            ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+        ]));
+    }
 }
