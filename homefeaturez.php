@@ -103,94 +103,94 @@ class HomeFeaturez extends Module
      *
      * @author Maksim T. <zapalm@yandex.com>
      */
-	public function getContent()
-	{
-		global $cookie;
+    public function getContent()
+    {
+        global $cookie;
 
-		$output = '<h2>'.$this->displayName.'</h2>';
+        $output = '<h2>'.$this->displayName.'</h2>';
 
-		if (Tools::isSubmit('submit_save'))
-		{
-			$res = 1;
-			foreach ($this->conf as $c => $v) {
-				$res &= Configuration::updateValue($c, intval(Tools::getValue($c)));
-			}
-			$output .= $res ? $this->displayConfirmation($this->l('Settings updated')) : $this->displayError($this->l('Some setting not updated'));
-		}
+        if (Tools::isSubmit('submit_save'))
+        {
+            $res = 1;
+            foreach ($this->conf as $c => $v) {
+                $res &= Configuration::updateValue($c, intval(Tools::getValue($c)));
+            }
+            $output .= $res ? $this->displayConfirmation($this->l('Settings updated')) : $this->displayError($this->l('Some setting not updated'));
+        }
 
-		$cols = Configuration::getMultiple(array_keys($this->conf));
-		$categories = Category::getHomeCategories($cookie->id_lang, false);
-		$root_cat = Category::getRootCategory($cookie->id_lang);
+        $cols = Configuration::getMultiple(array_keys($this->conf));
+        $categories = Category::getHomeCategories($cookie->id_lang, false);
+        $root_cat = Category::getRootCategory($cookie->id_lang);
 
-		$output .= '		
-			<fieldset style="width: 800px;">
-				<legend><img src="'._PS_ADMIN_IMG_.'cog.gif" alt="" title="" />'.$this->l('Settings').'</legend>
-				<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
-					<label>'.$this->l('Number of product displayed').'</label>
-					<div class="margin-form">
-						<input type="text" size="5" name="HOME_FEATURED_NBR" value="'.($cols['HOME_FEATURED_NBR'] ? $cols['HOME_FEATURED_NBR'] : '10').'" />
-						<p class="clear">'.$this->l('The number of products displayed on homepage (default: 10).').'</p>					
-					</div>
-					<label>'.$this->l('Category of products to display').'</label>
-					<div class="margin-form">
-						<select name="HOME_FEATURED_CATALOG">
-							<option value="'.$root_cat->id.'" '.($cols['HOME_FEATURED_CATALOG'] == $root_cat->id ? 'selected=1' : '').'>'.$root_cat->name.'</option>';
-							foreach ($categories as $c)
-								$output .= '<option value="'.$c['id_category'].'" '.($cols['HOME_FEATURED_CATALOG'] == $c['id_category'] ? 'selected=1' : '').'>'.$c['name'].'</option>';
-							$output .= '
-						</select>
-						<p class="clear">'.$this->l('Choose category of products, which will show on the homepage (default : Home category).').'</p>						
-					</div>				
-					<label>'.$this->l('Show products randomly').'</label>
-					<div class="margin-form">
-						<input type="checkbox" name="HOME_FEATURED_RANDOM" value="1" '.($cols['HOME_FEATURED_RANDOM'] ? 'checked="checked"' : '').' />
-						<p class="clear">'.$this->l('Check it, if you want to show products randomly.').'</p>
-					</div>								
-					<label>'.$this->l('Show title of a product').'</label>
-					<div class="margin-form">
-						<input type="checkbox" name="HOME_FEATURED_TITLE" value="1" '.($cols['HOME_FEATURED_TITLE'] ? 'checked="checked"' : '').' />
-						<p class="clear">'.$this->l('Check it, if you want to show a product title.').'</p>
-					</div>	
-					<label>'.$this->l('Show description of a product').'</label>
-					<div class="margin-form">
-						<input type="checkbox" name="HOME_FEATURED_DESCR" value="1" '.($cols['HOME_FEATURED_DESCR'] ? 'checked="checked"' : '').' />
-						<p class="clear">'.$this->l('Check it, if you want to show a product description.').'</p>
-					</div>	
-					<label>'.$this->l('Show a "View" button').'</label>
-					<div class="margin-form">
-						<input type="checkbox" name="HOME_FEATURED_VIEW" value="1" '.($cols['HOME_FEATURED_VIEW'] ? 'checked="checked"' : '').' />
-						<p class="clear">'.$this->l('Check it, if you want to show a "View" button.').'</p>
-					</div>		
-					<label>'.$this->l('Show a "Add to cart" button').'</label>
-					<div class="margin-form">
-						<input type="checkbox" name="HOME_FEATURED_CART" value="1" '.($cols['HOME_FEATURED_CART'] ? 'checked="checked"' : '').' />
-						<p class="clear">'.$this->l('Check it, if you want to show a "Add to cart" button. If prestashop catalog mode is enable than the button will not display.').'</p>
-					</div>
-					<label>'.$this->l('Show product price').'</label>
-					<div class="margin-form">
-						<input type="checkbox" name="HOME_FEATURED_PRICE" value="1" '.($cols['HOME_FEATURED_PRICE'] ? 'checked="checked"' : '').' />
-						<p class="clear">'.$this->l('Check it, if you want to show product price.').'</p>
-					</div>
-					<label>'.$this->l('Number of columns to display').'</label>
-					<div class="margin-form">
-						<input type="text" size="1" name="HOME_FEATURED_COLS" value="'.($cols['HOME_FEATURED_COLS'] ? $cols['HOME_FEATURED_COLS'] : '4').'" />
-						<p class="clear">'.$this->l('The number of columns displayed on homepage (default: 4).').'</p>					
-					</div>
-					<label>'.$this->l('Block module height adjust').'</label>
-					<div class="margin-form">
-						<input type="text" size="3" name="HOME_FEATURED_HEIGHT_ADJUST" value="'.($cols['HOME_FEATURED_HEIGHT_ADJUST'] ? $cols['HOME_FEATURED_HEIGHT_ADJUST'] : '0').'" /> px.						
-						<p class="clear">'.$this->l('You should input number of pixels to adjust height of the block.').'</p>
-					</div>						
-					<label>'.$this->l('Block module width adjust').'</label>
-					<div class="margin-form">
-						<input type="text" size="3" name="HOME_FEATURED_WIDTH_ADJUST" value="'.($cols['HOME_FEATURED_WIDTH_ADJUST'] ? $cols['HOME_FEATURED_WIDTH_ADJUST'] : '0').'" /> px.						
-						<p class="clear">'.$this->l('You should input number of pixels to adjust width of the block.').'</p>
-					</div>					
-					<center><input type="submit" name="submit_save" value="'.$this->l('Save').'" class="button" /></center>
-				</form>
-			</fieldset>
-			<br class="clear" />
-		';
+        $output .= '
+            <fieldset style="width: 800px;">
+                <legend><img src="'._PS_ADMIN_IMG_.'cog.gif" alt="" title="" />'.$this->l('Settings').'</legend>
+                <form action="'.$_SERVER['REQUEST_URI'].'" method="post">
+                    <label>'.$this->l('Number of product displayed').'</label>
+                    <div class="margin-form">
+                        <input type="text" size="5" name="HOME_FEATURED_NBR" value="'.($cols['HOME_FEATURED_NBR'] ? $cols['HOME_FEATURED_NBR'] : '10').'" />
+                        <p class="clear">'.$this->l('The number of products displayed on homepage (default: 10).').'</p>                    
+                    </div>
+                    <label>'.$this->l('Category of products to display').'</label>
+                    <div class="margin-form">
+                        <select name="HOME_FEATURED_CATALOG">
+                            <option value="'.$root_cat->id.'" '.($cols['HOME_FEATURED_CATALOG'] == $root_cat->id ? 'selected=1' : '').'>'.$root_cat->name.'</option>';
+                            foreach ($categories as $c)
+                                $output .= '<option value="'.$c['id_category'].'" '.($cols['HOME_FEATURED_CATALOG'] == $c['id_category'] ? 'selected=1' : '').'>'.$c['name'].'</option>';
+                            $output .= '
+                        </select>
+                        <p class="clear">'.$this->l('Choose category of products, which will show on the homepage (default : Home category).').'</p>                        
+                    </div>
+                    <label>'.$this->l('Show products randomly').'</label>
+                    <div class="margin-form">
+                        <input type="checkbox" name="HOME_FEATURED_RANDOM" value="1" '.($cols['HOME_FEATURED_RANDOM'] ? 'checked="checked"' : '').' />
+                        <p class="clear">'.$this->l('Check it, if you want to show products randomly.').'</p>
+                    </div>
+                    <label>'.$this->l('Show title of a product').'</label>
+                    <div class="margin-form">
+                        <input type="checkbox" name="HOME_FEATURED_TITLE" value="1" '.($cols['HOME_FEATURED_TITLE'] ? 'checked="checked"' : '').' />
+                        <p class="clear">'.$this->l('Check it, if you want to show a product title.').'</p>
+                    </div>
+                    <label>'.$this->l('Show description of a product').'</label>
+                    <div class="margin-form">
+                        <input type="checkbox" name="HOME_FEATURED_DESCR" value="1" '.($cols['HOME_FEATURED_DESCR'] ? 'checked="checked"' : '').' />
+                        <p class="clear">'.$this->l('Check it, if you want to show a product description.').'</p>
+                    </div>
+                    <label>'.$this->l('Show a "View" button').'</label>
+                    <div class="margin-form">
+                        <input type="checkbox" name="HOME_FEATURED_VIEW" value="1" '.($cols['HOME_FEATURED_VIEW'] ? 'checked="checked"' : '').' />
+                        <p class="clear">'.$this->l('Check it, if you want to show a "View" button.').'</p>
+                    </div>
+                    <label>'.$this->l('Show a "Add to cart" button').'</label>
+                    <div class="margin-form">
+                        <input type="checkbox" name="HOME_FEATURED_CART" value="1" '.($cols['HOME_FEATURED_CART'] ? 'checked="checked"' : '').' />
+                        <p class="clear">'.$this->l('Check it, if you want to show a "Add to cart" button. If prestashop catalog mode is enable than the button will not display.').'</p>
+                    </div>
+                    <label>'.$this->l('Show product price').'</label>
+                    <div class="margin-form">
+                        <input type="checkbox" name="HOME_FEATURED_PRICE" value="1" '.($cols['HOME_FEATURED_PRICE'] ? 'checked="checked"' : '').' />
+                        <p class="clear">'.$this->l('Check it, if you want to show product price.').'</p>
+                    </div>
+                    <label>'.$this->l('Number of columns to display').'</label>
+                    <div class="margin-form">
+                        <input type="text" size="1" name="HOME_FEATURED_COLS" value="'.($cols['HOME_FEATURED_COLS'] ? $cols['HOME_FEATURED_COLS'] : '4').'" />
+                        <p class="clear">'.$this->l('The number of columns displayed on homepage (default: 4).').'</p>                    
+                    </div>
+                    <label>'.$this->l('Block module height adjust').'</label>
+                    <div class="margin-form">
+                        <input type="text" size="3" name="HOME_FEATURED_HEIGHT_ADJUST" value="'.($cols['HOME_FEATURED_HEIGHT_ADJUST'] ? $cols['HOME_FEATURED_HEIGHT_ADJUST'] : '0').'" /> px.                        
+                        <p class="clear">'.$this->l('You should input number of pixels to adjust height of the block.').'</p>
+                    </div>
+                    <label>'.$this->l('Block module width adjust').'</label>
+                    <div class="margin-form">
+                        <input type="text" size="3" name="HOME_FEATURED_WIDTH_ADJUST" value="'.($cols['HOME_FEATURED_WIDTH_ADJUST'] ? $cols['HOME_FEATURED_WIDTH_ADJUST'] : '0').'" /> px.                        
+                        <p class="clear">'.$this->l('You should input number of pixels to adjust width of the block.').'</p>
+                    </div>
+                    <center><input type="submit" name="submit_save" value="'.$this->l('Save').'" class="button" /></center>
+                </form>
+            </fieldset>
+            <br class="clear" />
+        ';
 
         // The block about the module (version: 2021-08-19)
         $modulezUrl    = 'https://prestashop.modulez.ru' . (Language::getIsoById(false === empty($GLOBALS['cookie']->id_lang) ? $GLOBALS['cookie']->id_lang : Context::getContext()->language->id) === 'ru' ? '/ru/' : '/en/');
@@ -220,51 +220,51 @@ class HomeFeaturez extends Module
             (version_compare(_PS_VERSION_, '1.6', '<') ? '<br class="clear" />' : '') . '
         ';
 
-		return $output;
-	}
+        return $output;
+    }
 
     /**
      * @inheritdoc
      *
      * @author Maksim T. <zapalm@yandex.com>
      */
-	public function hookHome($params)
-	{
-		global $smarty;
+    public function hookHome($params)
+    {
+        global $smarty;
 
-		$conf = Configuration::getMultiple(array_keys($this->conf));
-		$conf['HOME_FEATURED_COLS'] = (int)$conf['HOME_FEATURED_COLS'] ? (int)$conf['HOME_FEATURED_COLS'] : 4;
-		$cat = (int)$conf['HOME_FEATURED_CATALOG'];
-		$category = new Category($cat ? $cat : 1);
+        $conf = Configuration::getMultiple(array_keys($this->conf));
+        $conf['HOME_FEATURED_COLS'] = (int)$conf['HOME_FEATURED_COLS'] ? (int)$conf['HOME_FEATURED_COLS'] : 4;
+        $cat = (int)$conf['HOME_FEATURED_CATALOG'];
+        $category = new Category($cat ? $cat : 1);
 
-		$nb = (int)$this->conf['HOME_FEATURED_NBR'];
-		if ($conf['HOME_FEATURED_RANDOM'])
-			$products = $category->getProducts(intval($params['cookie']->id_lang), 1, ($nb ? $nb : 10), 'date_add', 'DESC', false, true, true, ($nb ? $nb : 10));
-		else
-			$products = $category->getProducts(intval($params['cookie']->id_lang), 1, ($nb ? $nb : 10), 'date_add', 'DESC');
+        $nb = (int)$this->conf['HOME_FEATURED_NBR'];
+        if ($conf['HOME_FEATURED_RANDOM'])
+            $products = $category->getProducts(intval($params['cookie']->id_lang), 1, ($nb ? $nb : 10), 'date_add', 'DESC', false, true, true, ($nb ? $nb : 10));
+        else
+            $products = $category->getProducts(intval($params['cookie']->id_lang), 1, ($nb ? $nb : 10), 'date_add', 'DESC');
 
-		// A width in pixels of the home featured block
-		$block_width = (int)$conf['HOME_FEATURED_WIDTH_ADJUST'];
+        // A width in pixels of the home featured block
+        $block_width = (int)$conf['HOME_FEATURED_WIDTH_ADJUST'];
 
-		// A number of products per line
-		$nb_items_per_line = (int)$conf['HOME_FEATURED_COLS'];
+        // A number of products per line
+        $nb_items_per_line = (int)$conf['HOME_FEATURED_COLS'];
 
-		// A width in pixels of a product list item
-		$block_li_width = ceil($block_width / $nb_items_per_line) - 1;
+        // A width in pixels of a product list item
+        $block_li_width = ceil($block_width / $nb_items_per_line) - 1;
 
-		// A size of a product image
-		$pic_size_type = 'home';
+        // A size of a product image
+        $pic_size_type = 'home';
 
-		$smarty->assign(array(
-			'nb_items_per_line' => $nb_items_per_line,
-			'block_li_width' => $block_li_width,
-			'products' => $products,
-			'pic_size_type' => $pic_size_type,
-			'conf' => $conf
-		));
+        $smarty->assign(array(
+            'nb_items_per_line' => $nb_items_per_line,
+            'block_li_width' => $block_li_width,
+            'products' => $products,
+            'pic_size_type' => $pic_size_type,
+            'conf' => $conf
+        ));
 
-		return $this->display(__FILE__, 'homefeaturez.tpl');
-	}
+        return $this->display(__FILE__, 'homefeaturez.tpl');
+    }
 
     /**
      * Registers current module installation/uninstallation in the quality service.
