@@ -11,7 +11,7 @@
 {if empty($products)}
     <p>{l s='No featured products' mod='homefeaturez'}</p>
 {else}
-    <div id="featured-products_block_center" class="block products_block">
+    <div id="featured-products_block_center" class="block products_block clear">
         <h4>{l s='Featured products' mod='homefeaturez'}</h4>
         <div class="block_content">
             <ul style="height:{$conf.HOME_FEATURED_HEIGHT_ADJUST|intval}px;">
