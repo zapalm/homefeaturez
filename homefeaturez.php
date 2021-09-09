@@ -46,7 +46,7 @@ class HomeFeaturez extends Module
     {
         $this->name          = 'homefeaturez';
         $this->tab           = version_compare(_PS_VERSION_, '1.4', '>=') ? 'front_office_features' : 'Tools';
-        $this->version       = '2.3.2';
+        $this->version       = '2.6.0';
         $this->author        = 'zapalm';
         $this->need_instance = false;
 
